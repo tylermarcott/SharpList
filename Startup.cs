@@ -39,6 +39,8 @@ public class Startup
     services.AddScoped<CarsRepository>();
     services.AddScoped<CarsService>();
 
+    //NOTE: this is very important! Don't forget to add your scopes or they will break!
+
     services.AddScoped<HousesRepository>();
     services.AddScoped<HousesService>();
   }
