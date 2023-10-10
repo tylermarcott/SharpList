@@ -37,4 +37,14 @@ public class HousesRepository
         House house = _db.Query<House>(sql, new { houseId }).FirstOrDefault();
         return house;
     }
+
+    internal void DeleteHouse(int houseId)
+    {
+        string sql = "DELETE FROM houses WHERE id = @houseId";
+
+        int rowsAffected = _db.Execute(sql, new { houseId });
+
+        if (rowsAffected > 1) throw new Exception("GET THE SENIOR DEV STAT! THINGS ARE GOING WRONG!");
+        if (rowsAffected < 1) throw new Exception("Nothing was deleted?");
+    }
 }

@@ -30,4 +30,11 @@ public class HousesService
         if (house == null) throw new Exception($"no house with the following id: {houseId}");
         return house;
     }
+
+    internal string DeleteHouse(int houseId)
+    {
+        House house = this.GetHouseById(houseId);
+        _repo.DeleteHouse(houseId);
+        return $"{house.Bedrooms} bedroom, {house.Bathrooms} bathroom house was removed from the database.";
+    }
 }
