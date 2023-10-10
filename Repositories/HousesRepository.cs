@@ -38,6 +38,24 @@ public class HousesRepository
         return house;
     }
 
+    internal House EditHouse(House houseData)
+    {
+        string sql = @"
+        UPDATE houses
+        SET
+        sqft = @sqft,
+        bedrooms = @bedrooms,
+        bathrooms = @bathrooms,
+        imgUrl = @imgUrl,
+        description = @description,
+        price = @price
+        WHERE id = @id;
+        SELECT * FROM houses WHERE id = @id;
+        ";
+        House house = _db.Query<House>(sql, houseData).FirstOrDefault();
+        return house;
+    }
+
     internal void DeleteHouse(int houseId)
     {
         string sql = "DELETE FROM houses WHERE id = @houseId";

@@ -31,6 +31,20 @@ public class HousesService
         return house;
     }
 
+    internal House EditHouse(House updateData)
+    {
+        House original = this.GetHouseById(updateData.Id);
+
+        original.Sqft = updateData.Sqft != 0 ? updateData.Sqft : original.Sqft;
+        original.Bedrooms = updateData.Bedrooms != 0 ? updateData.Bedrooms : original.Bedrooms;
+        original.Bathrooms = updateData.Bathrooms != 0 ? updateData.Bathrooms : original.Bathrooms;
+        original.ImgUrl = updateData.ImgUrl ?? updateData.ImgUrl;
+        original.Description = updateData.Description ?? updateData.Description;
+        original.Price = updateData.Price != 0 ? updateData.Price : original.Price;
+        House house = _repo.EditHouse(original);
+        return house;
+    }
+
     internal string DeleteHouse(int houseId)
     {
         House house = this.GetHouseById(houseId);
