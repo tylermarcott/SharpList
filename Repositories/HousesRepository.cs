@@ -17,7 +17,7 @@ public class HousesRepository
         INSERT INTO houses
         (sqft, bedrooms, bathrooms, imgUrl, description, price)
         VALUES
-        (@sqft, @bedrooms, @bathrooms, @imgUrl, @description, @price)
+        (@sqft, @bedrooms, @bathrooms, @imgUrl, @description, @price);
         SELECT * FROM houses WHERE id = LAST_INSERT_ID();
         ";
         House house = _db.Query<House>(sql, houseData).FirstOrDefault();
