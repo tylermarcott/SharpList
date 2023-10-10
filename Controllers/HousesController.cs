@@ -1,36 +1,31 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using SharpList.Services;
 using server.Models;
 using server.Services;
 
 // NOTE: this syntax HAS to math what is in our globals. In this case, global is sharpList NOT SharpList
-namespace server.Controllers
+namespace server.Controllers;
+
+[ApiController]
+[Route("api/[controller]")]
+public class HousesController : ControllerBase
 {
-    [ApiController]
-    [Route("api/[controller]")]
-    public class HousesController : ControllerBase
+    private readonly HousesService _housesService;
+
+    public HousesController(HousesService housesService)
     {
-        private readonly HousesService _housesService;
+        _housesService = housesService;
+    }
 
-        public HousesController(HousesService housesService)
+    [HttpGet]
+    public ActionResult<List<House>> GetAllHouses()
+    {
+        try
         {
-            _housesService = housesService;
+            List<House> houses = _housesService.GetAllHouses();
+            return Ok(houses);
         }
-
-        [HttpGet]
-        public ActionResult<List<House>> GetAllHouses()
+        catch (Exception e)
         {
-            try
-            {
-
-            }
-            catch (Exception e)
-            {
-                return BadRequest(e.Message);
-            }
+            return BadRequest(e.Message);
         }
     }
 }

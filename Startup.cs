@@ -39,7 +39,8 @@ public class Startup
     services.AddScoped<CarsRepository>();
     services.AddScoped<CarsService>();
 
-    // FIXME: ADD SCOPES FOR HOUSES HERE
+    services.AddScoped<HousesRepository>();
+    services.AddScoped<HousesService>();
   }
 
   private void ConfigureCors(IServiceCollection services)

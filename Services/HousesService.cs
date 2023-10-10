@@ -1,18 +1,20 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using server.Models;
+using server.Repositories;
 
-namespace SharpList.Services
+namespace server.Services;
+
+public class HousesService
 {
-    public class HousesService
+    private readonly HousesRepository _repo;
+
+    public HousesService(HousesRepository repo)
     {
-        public int Id { get; set; }
-        public int Sqft { get; set; }
-        public int Bedrooms { get; set; }
-        public int Bathrooms { get; set; }
-        public string ImgUrl { get; set; }
-        public string Description { get; set; }
-        public int Price { get; set; }
+        _repo = repo;
+    }
+
+    internal List<House> GetAllHouses()
+    {
+        List<House> houses = _repo.GetAllHouses();
+        return houses;
     }
 }
